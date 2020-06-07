@@ -1,0 +1,69 @@
+#!SCons
+ 
+Import('env')
+ 
+# Add current path to include path
+env.Append(CPPPATH=['.'])
+ 
+sources = Split("""
+	CAimbot.cpp
+	CCam.cpp
+	CDebug.cpp
+	CDetour.cpp
+	CDrawtools.cpp
+	CEngine.cpp
+	CGNetwork.cpp
+	CGui.cpp
+	CHook.cpp
+	CIrc.cpp
+	CNetwork.cpp
+	CPerl.cpp
+	CPortal.cpp
+	CSettings.cpp
+	CSounds.cpp
+	CSpectator.cpp
+	CSyscall.cpp
+	CTools.cpp
+	CVisuals.cpp
+	CXCommands.cpp
+	eth32.cpp
+	tools/StringTokenizer/StringTokenizer.cpp
+	sdk/src/game/q_math.cpp
+	sdk/src/game/bg_misc.cpp
+	sdk/src/game/q_shared.cpp
+	gui/CBallisticWindow.cpp
+	gui/CBanner.cpp
+	gui/CButtons.cpp
+	gui/CCameraWindow.cpp
+	gui/CChatWindow.cpp
+	gui/CCheckbox.cpp
+	gui/CClientWindow.cpp
+	gui/CColorPicker.cpp
+	gui/CControl.cpp
+	gui/CEspConfigWindow.cpp
+	gui/CEspWindow.cpp
+	gui/CIrcWindow.cpp
+	gui/CPlayerWindow.cpp
+	gui/CRadarWindow.cpp
+	gui/CRespawnWindow.cpp
+	gui/CScrollBar.cpp
+	gui/CSliders.cpp
+	gui/CSpecWindow.cpp
+	gui/CStatsWindow.cpp
+	gui/CStatusWindow.cpp
+	gui/CTextControls.cpp
+	gui/CUsersWindow.cpp
+	gui/CWeaponWindow.cpp
+	gui/CWindow.cpp
+	gui/CWindowPicker.cpp
+""")
+
+if env['PRIV']:
+	sources.append('#priv/priv.cpp')
+
+env.Default(
+	env.SharedLibrary(
+		target='../../eth32_v3',
+		source=sources
+	)
+)
